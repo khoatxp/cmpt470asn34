@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Rectangles</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/rectangle.css">
+</head>
+
+<body class="container" style="margin-top: 50px;">
+  <% if (messages.success) { %>
+  <div class="alert alert-success" role="alert"><%- messages.success %></div>
+  <% } %>
+
+  <% if (messages.error) { %>
+  <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+  <% } %>
+
+
+  <div class="card"> 
+    <div class="card-header">
+        <ul class="nav nav-pills w-100">
+            <li class="nav-pill active">
+                <a class="nav-link">Rectangles</a>
+            </li>
+            <li class="nav-pill ml-auto">
+                <a class="nav-link active" href="/add">Add a rectangle</a>
+            </li>
+        </ul>
+    </div>
+<div class="card-body">
+
+  <% if(rows) { %>
+  <h1>Rectangle Table</h1>
+  <table class="hoverTable">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Shape</th>
+        <th>
+          Operations
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+     <% rows.forEach(function(r) { %>
+        <tr>
+          <td><%= r.id %></td>
+          <td>
+            <svg width ="<%=r.size %>" height="<%=r.height %>" onclick="location.href='/update/<%= r.pid %>'">
+              <rect type="box" x="0" y="0" width ="<%=r.width %>" height="<%=r.height %>" class="<%= r.color %>" >
+              </rect>
+            </svg>
+          </td>
+          <td>
+            <a class="btn btn-sm btn-warning" href="/update/<%= r.id %>">Update</a>
+            <a class="btn btn-sm btn-danger" onclick="return confirm('You want to delete rectangle #<%= r.id %>? ')" href="/delete/<%= r.id %>">Delete</a>
+          </td>
+        </tr>
+    <% }); %>
+    </tbody>
+  </table>
+  <% } %>
+  <!-- if result is empty -->
+  <% if(!rows) { %>
+    <p class="text-center">No rectangles found!</p>
+  <% } %>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+  var box = document.querySelectorAll('[type="box"]');
+  for(var i =0 ; i<box.length;i++){
+    box[i].style.fill=box[i].classList.value;
+  }
+</script>
+</html>

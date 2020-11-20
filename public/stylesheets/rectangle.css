@@ -1,0 +1,14 @@
+table, th, td {
+    padding: 20px;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 15px;
+}
+.hoverTable tr{
+  border-bottom: 1px solid #ddd;
+}
+.hoverTable tr:hover {
+    background-color: #eef5ca;
+}
