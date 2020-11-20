@@ -38,9 +38,8 @@
       <tr>
         <th>Id</th>
         <th>Shape</th>
-        <th>
-          Operations
-        </th>
+        <th> Area</th>
+        <th> Operations</th>
       </tr>
     </thead>
     <tbody>
@@ -48,11 +47,12 @@
         <tr>
           <td><%= r.id %></td>
           <td>
-            <svg width ="<%=r.size %>" height="<%=r.height %>" onclick="location.href='/update/<%= r.pid %>'">
+            <svg width ="<%=r.size %>" height="<%=r.height %>" onclick="location.href='/update/<%= r.id %>'">
               <rect type="box" x="0" y="0" width ="<%=r.width %>" height="<%=r.height %>" class="<%= r.color %>" >
               </rect>
             </svg>
           </td>
+          <td type="area"></td>
           <td>
             <a class="btn btn-sm btn-warning" href="/update/<%= r.id %>">Update</a>
             <a class="btn btn-sm btn-danger" onclick="return confirm('You want to delete rectangle #<%= r.id %>? ')" href="/delete/<%= r.id %>">Delete</a>
@@ -71,8 +71,11 @@
 </body>
 <script type="text/javascript">
   var box = document.querySelectorAll('[type="box"]');
+  var area = document.querySelectorAll('[type="area"]');
   for(var i =0 ; i<box.length;i++){
     box[i].style.fill=box[i].classList.value;
+    area[i].innerHTML=(box[i].width.baseVal.value*box[i].height.baseVal.value).toString();
   }
+  
 </script>
 </html>
