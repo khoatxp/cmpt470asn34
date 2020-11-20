@@ -2,7 +2,7 @@ set -v
 #gcloud compute instances add-metadata asn3-4 --metadata-from-file startup-script=/home/khoatxp/asn3-4/startup-script.sh
 
 # Talk to the metadata server to get the project id
-PROJECTID="dotted-embassy-286317"
+PROJECTID=$(curl -s "http://metadata.google.internal/computeMetadata/v1/project/project-id" -H "Metadata-Flavor: Google")
 REPOSITORY="asn3-4"
 
 # Install logging monitor. The monitor will automatically pick up logs sent to
